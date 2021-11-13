@@ -19,8 +19,8 @@ if __name__ == "__main__":
     parser.set_defaults(fixed_duration=False)
     
     
-    height = 346
-    width = 260
+    height = 260
+    width = 346
 
     args = parser.parse_args()
     N = args.window_size
