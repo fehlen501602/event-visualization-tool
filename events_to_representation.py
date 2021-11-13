@@ -8,7 +8,7 @@ def generate_event_histogram(events, shape):
          """
          H, W = shape
          #x, y, t, p = events #ValueError: too many values to unpack (expected 4)
-         x, y, t, p = events.T
+         y, x, t, p = events.T
          x = x.astype(np.int)
          y = y.astype(np.int)
 
@@ -16,7 +16,7 @@ def generate_event_histogram(events, shape):
          img_neg = np.zeros((H * W,), dtype="float32")
 
          np.add.at(img_pos, x[p == 1] + W * y[p == 1], 1)
-         np.add.at(img_neg, x[p == -1] + W * y[p == -1], 1)
+         np.add.at(img_neg, x[p == 0] + W * y[p == 0], 1)
 
          histogram = np.stack([img_neg, img_pos], -1).reshape((H, W, 2))
 
